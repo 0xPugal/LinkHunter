@@ -1,0 +1,6 @@
+argparse
+requests
+re
+urlparse
+urljoin
+BeautifulSoup
