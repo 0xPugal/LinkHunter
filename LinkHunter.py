@@ -4,6 +4,7 @@ import re
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 
+
 BANNER = r"""
     __    _       __        __  __            __           
    / /   (_)___  / /__     / / / /_  ______  / /____  _____
@@ -11,8 +12,8 @@ BANNER = r"""
  / /___/ / / / / ,<      / __  / /_/ / / / / /_/  __/ /    
 /_____/_/_/ /_/_/|_|____/_/ /_/\__,_/_/ /_/\__/\___/_/     
                   /_____/                              @0xPugazh
-                  
 """
+
 
 def robots(url, output):
     robots_url = urljoin(url, '/robots.txt')
@@ -31,7 +32,7 @@ def sitemap(url, output):
     sitemap_url = urljoin(url, '/sitemap.xml')
     response = requests.get(sitemap_url)
     if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'lxml')  # Use lxml parser
+        soup = BeautifulSoup(response.text, 'lxml', features="xml")  # Use lxml parser with XML features
         urls = [loc.text for loc in soup.find_all('loc')]
         with open(output, 'w') as file:
             file.write('\n'.join(urls))
@@ -41,7 +42,9 @@ def sitemap(url, output):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='LinkHunter - URL Extraction Tool')
+    parser = argparse.ArgumentParser(description='LinkHunter - URL Extraction Tool', add_help=False)
+    parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
+                        help='Show this help message and exit')
     parser.add_argument('-u', '--url', help='Website URL', required=True)
     parser.add_argument('-o', '--output', help='Output file name prefix', required=True)
     parser.add_argument('-robot', '--robots', help='Extract URLs from robots.txt', action='store_true')
@@ -51,9 +54,9 @@ if __name__ == '__main__':
     print(BANNER)
 
     if args.robots:
-        url_robot = args.output + "_robot.txt"
+        url_robot = args.url + "_robots.txt"
         robots(args.url, url_robot)
 
     if args.sitemap:
-        url_sitemap = args.output + "_sitemap.txt"
+        url_sitemap = args.url + "_sitemap.txt"
         sitemap(args.url, url_sitemap)
