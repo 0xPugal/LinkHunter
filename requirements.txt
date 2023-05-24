@@ -1,6 +1,5 @@
 argparse
-requests
-re
 urlparse
 urljoin
-BeautifulSoup
+beautifulsoup4
+requests
