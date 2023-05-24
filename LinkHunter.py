@@ -32,7 +32,7 @@ def sitemap(url, output):
     sitemap_url = urljoin(url, '/sitemap.xml')
     response = requests.get(sitemap_url)
     if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'lxml', features="xml")  # Use lxml parser with XML features
+        soup = BeautifulSoup(response.text, 'xml')  # Use 'xml' as the parser
         urls = [loc.text for loc in soup.find_all('loc')]
         with open(output, 'w') as file:
             file.write('\n'.join(urls))
@@ -54,9 +54,9 @@ if __name__ == '__main__':
     print(BANNER)
 
     if args.robots:
-        url_robot = args.url + "_robots.txt"
+        url_robot = args.output + "_robots.txt"  # Modify the output file path
         robots(args.url, url_robot)
 
     if args.sitemap:
-        url_sitemap = args.url + "_sitemap.txt"
+        url_sitemap = args.output + "_sitemap.txt"  # Modify the output file path
         sitemap(args.url, url_sitemap)
