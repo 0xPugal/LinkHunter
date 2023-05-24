@@ -10,9 +10,9 @@ pip3 install -r requirements.txt
 ```
 
 ## Usage
-``python3 test.py -u https://www.google.com -o google -robot -sitemap``
+``python3 LinkFinder.py -u https://www.google.com -o google -robot -sitemap``
 ```
-root@pugazh:~# python3 test.py -u https://www.google.com -o google -robot -sitemap
+root@pugazh:~# python3 LinkFinder.py -u https://www.google.com -o google -robot -sitemap
 
     __    _       __        __  __            __           
    / /   (_)___  / /__     / / / /_  ______  / /____  _____
