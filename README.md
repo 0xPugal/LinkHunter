@@ -10,19 +10,8 @@ pip3 install -r requirements.txt
 ```
 
 ## Usage
-``python3 LinkHunter.py -u https://www.google.com -o google -robot -sitemap``
 ```
-root@pugazh:~# python3 LinkHunter.py -u https://www.google.com -o google -robot -sitemap
-
-    __    _       __        __  __            __           
-   / /   (_)___  / /__     / / / /_  ______  / /____  _____
-  / /   / / __ \/ //_/    / /_/ / / / / __ \/ __/ _ \/ ___/
- / /___/ / / / / ,<      / __  / /_/ / / / / /_/  __/ /    
-/_____/_/_/ /_/_/|_|____/_/ /_/\__,_/_/ /_/\__/\___/_/     
-                  /_____/                              @0xPugazh
-
-Extracted URLs from robots.txt saved in google_robots.txt
-Extracted URLs from sitemap.xml saved in google_sitemap.txt
+python3 LinkHunter.py -u https://www.google.com -o google -robot -sitemap``
 ```
 
 ## Help
@@ -44,3 +33,6 @@ options:
   -robot, --robots      Extract URLs from robots.txt
   -sitemap, --sitemap   Extract URLs from sitemap.xml
 ```
+
+## Support Me
+<a href="https://www.buymeacoffee.com/0xPugazh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
