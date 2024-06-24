@@ -2,3 +2,4 @@ argparse
 urljoin
 beautifulsoup4
 requests
+security==1.2.1

@@ -1,8 +1,8 @@
 import argparse
-import requests
 import re
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urljoin
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 
 BANNER = r"""
@@ -17,7 +17,7 @@ BANNER = r"""
 
 def robots(url, output):
     robots_url = urljoin(url, '/robots.txt')
-    response = requests.get(robots_url)
+    response = safe_requests.get(robots_url)
     if response.status_code == 200:
         urls = re.findall(r'Disallow: (.+)', response.text)
         urls = [urljoin(url, path) for path in urls]
@@ -30,7 +30,7 @@ def robots(url, output):
 
 def sitemap(url, output):
     sitemap_url = urljoin(url, '/sitemap.xml')
-    response = requests.get(sitemap_url)
+    response = safe_requests.get(sitemap_url)
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'xml')  # Use 'xml' as the parser
         urls = [loc.text for loc in soup.find_all('loc')]
